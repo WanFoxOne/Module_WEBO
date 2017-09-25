@@ -9,9 +9,9 @@ session_start();
 // Connexion à la base de données
 $db = mysqli_connect(
         'localhost',
-        'corler1u',
-        'ohtooYei1y',
-        'webo'
+        'XxX', // Username
+        'XxX',   // Password
+        'XxX'  // Database
     ) or die('Erreur de connexion (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
 
 

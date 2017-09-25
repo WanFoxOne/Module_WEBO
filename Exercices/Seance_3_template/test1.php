@@ -3,7 +3,7 @@
 include('template.php');
 
 // Connexion à la DB
-$db = new PDO('mysql:host=localhost;dbname=webo', 'corler1u', 'ohtooYei1y');
+$db = new PDO('mysql:host=localhost;dbname=dbname', 'username', 'password');
 
 // Statement SQL
 $sql = "SELECT pseudo, email FROM table_users WHERE id = 1";

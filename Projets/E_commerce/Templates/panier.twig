@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <!-- Paramètres généraux
+        ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="content-language" content="fr"/>
+    <meta name="author" content="CORLER Damien"/>
+
+    <!-- Paramètres spécifiques
+        ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    <title>Exercice 2</title>
+    <meta name="description" content="Module WEBO"/>
+
+    <!-- CSS
+        ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/css/uikit.min.css"/>
+
+    <!-- Scripts prioritaires
+        ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/js/uikit.min.js"></script>
+
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar_container uk-margin-bottom">
+
+    <div class="navbar_shadow"></div>
+
+    <nav class="uk-navbar-container">
+        <div class="uk-container uk-container-large">
+            <div class="uk-navbar" uk-navbar="dropbar: true">
+                <div class="nav-overlay uk-navbar-left">
+
+                    <a class="uk-navbar-item logo_padding" href="#">
+                        <img class="uk-logo uk-responsive-height" src="{{ url_img_logo }}"/>
+                    </a>
+
+                </div>
+
+                <div class="nav-overlay uk-navbar-right">
+
+                    <ul class="uk-navbar-nav">
+
+                        <li class="uk-active uk-visible@s"><a href="{{ url_page_index }}">Accueil</a></li>
+
+                        <li>
+                            <a class="uk-link-reset" href="{{ url_page_panier }}">
+                                <button type="button" class="uk-button uk-button-primary ">
+                                    <span class="text_button">
+                                        Panier
+                                    </span>
+                                    <span class="uk-margin-small" uk-icon="icon: sign-in"></span>
+                                </button>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+</div>
+<!-- END Navbar -->
+
+<div class="uk-container uk-margin-bottom">
+    <div>
+        <div class="uk-card uk-card-primary uk-card-body">
+            <h3 class="uk-card-title">Panier</h3>
+
+
+            {% if articles_panier|length > 0 %}
+            <table class="uk-table uk-table-striped">
+
+                <thead>
+                <tr>
+                    <th>Nmb</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for article_panier in articles_panier %}
+                        <tr>
+                            <td>{{ article_panier.id_panier|e + 1}}</td>
+                            <td>{{ article_panier.nom|e }}</td>
+                            <td>{{ article_panier.prix|e }}</td>
+                            <td><a href="?delarticle={{ article_panier.id_panier|e }}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+            <form action="insert.php" method="POST">
+                <fieldset class="uk-fieldset">
+
+                    <legend class="uk-legend">Votre nom</legend>
+
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" name="client" placeholder="Nom...">
+                    </div>
+
+                    <button class="uk-button uk-button-secondary" ype="submit">Enregistrer</button>
+                </fieldset>
+            </form>
+            {%  else %}
+                <p>Votre panier est vide</p>
+            {%  endif %}
+        </div>
+    </div>
+</div>
+
+<div class="uk-container uk-margin-large-bottom">
+    <div>
+        <div class="uk-card uk-card-secondary uk-card-body">
+            <h3 class="uk-card-title">DUMP</h3>
+            {% for key,dump in dumps %}
+                {% if key == "Panier" %}
+                    {% if dump == "[]" %}
+                        <p>{{ key|e }} -> Vide</p>
+                    {% else %}
+                        <p>{{ key|e }} -> {{ dump|e }}</p>
+                    {% endif %}
+                {% else %}
+                    <p>{{ key|e }} -> {{ dump|e }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

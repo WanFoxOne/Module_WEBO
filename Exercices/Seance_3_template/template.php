@@ -55,7 +55,7 @@ class Template {
 	 * Constructor. Simply sets the root dir.
 	 *
 	 */
-	function Template($root = "./")
+	function __construct($root = "./")
 	{
 		$this->set_rootdir($root);
 	}
@@ -113,7 +113,7 @@ class Template {
 	{
 		if (!$this->loadfile($handle))
 		{
-			die("Template->pparse(): Impossible de charger le fichier template pour le modèle $handle");
+			die("Template->pparse(): Impossible de charger le fichier template pour le modï¿½le $handle");
 		}
 
 		// actually compile the template now.
@@ -140,7 +140,7 @@ class Template {
 	{
 		if (!$this->loadfile($handle))
 		{
-			die("Template->assign_var_from_handle(): Impossible de charger le fichier template pour le modèle $handle");
+			die("Template->assign_var_from_handle(): Impossible de charger le fichier template pour le modï¿½le $handle");
 		}
 
 		// Compile it, with the "no echo statements" option on.
@@ -257,7 +257,7 @@ class Template {
 		// If we don't have a file assigned to this handle, die.
 		if (!isset($this->files[$handle]))
 		{
-			die("Template->loadfile(): Aucun fichier spécifié pour le modèle $handle");
+			die("Template->loadfile(): Aucun fichier spï¿½cifiï¿½ pour le modï¿½le $handle");
 		}
 
 		$filename = $this->files[$handle];
@@ -265,7 +265,7 @@ class Template {
 		$str = implode("", @file($filename));
 		if (empty($str))
 		{
-			die("Template->loadfile(): Le fichier $filename pour le modèle $handle est vide");
+			die("Template->loadfile(): Le fichier $filename pour le modï¿½le $handle est vide");
 		}
 
 		$this->uncompiled_code[$handle] = $str;

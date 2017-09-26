@@ -3,7 +3,7 @@
 include('template.php');
 
 // Connexion à la DB
-$db = new PDO('mysql:host=localhost;dbname=dbname', 'username', 'password');
+$db = new PDO('mysql:host=localhost;dbname=webo', 'corler1u', 'ohtooYei1y');
 
 // Statement SQL
 $sql = "SELECT pseudo, email FROM table_users WHERE id = 1";
@@ -12,7 +12,7 @@ $sql = "SELECT pseudo, email FROM table_users WHERE id = 1";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
-// Traitement du résuktat de la requête DB
+// Traitement du résultat de la requête DB
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 

@@ -9,9 +9,9 @@ session_start();
 // Connexion à la base de données
 $db = mysqli_connect(
         'localhost',
-        'XxX', // Username
-        'XxX',   // Password
-        'XxX'  // Database
+        'corler1u',
+        'ohtooYei1y',
+        'webo'
     ) or die('Erreur de connexion (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
 
 
@@ -63,7 +63,7 @@ if(!empty($sup) && $_SESSION['token'] === $tokenGet)
 }
 
 
-// Récupération d'un message spécifique de la base de données
+// Récupération d'un message spécifique la base de données
 $modResult = null;
 
 if(!empty($getMod) && empty($mod) && $_SESSION['token'] === $tokenGet)

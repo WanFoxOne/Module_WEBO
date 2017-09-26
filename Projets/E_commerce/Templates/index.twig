@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <!-- Paramètres généraux
+        ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="content-language" content="fr"/>
+    <meta name="author" content="CORLER Damien"/>
+
+    <!-- Paramètres spécifiques
+        ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    <title>Exercice 2</title>
+    <meta name="description" content="Module WEBO"/>
+
+    <!-- CSS
+        ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/css/uikit.min.css"/>
+
+    <!-- Scripts prioritaires
+        ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/js/uikit.min.js"></script>
+
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar_container uk-margin-bottom">
+
+    <div class="navbar_shadow"></div>
+
+    <nav class="uk-navbar-container">
+        <div class="uk-container uk-container-large">
+            <div class="uk-navbar" uk-navbar="dropbar: true">
+                <div class="nav-overlay uk-navbar-left">
+
+                    <a class="uk-navbar-item logo_padding" href="#">
+                        <img class="uk-logo uk-responsive-height" src="{{ url_img_logo }}"/>
+                    </a>
+
+                </div>
+
+                <div class="nav-overlay uk-navbar-right">
+
+                    <ul class="uk-navbar-nav">
+
+                        <li class="uk-active uk-visible@s"><a href="{{ url_page_index }}">Accueil</a></li>
+
+                        <li>
+                            <a class="uk-link-reset" href="{{ url_page_panier }}">
+                                <button type="button" class="uk-button uk-button-primary ">
+                                    <span class="text_button">
+                                        Panier
+                                    </span>
+                                    <span class="uk-margin-small" uk-icon="icon: sign-in"></span>
+                                </button>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+</div>
+<!-- END Navbar -->
+
+<div class="uk-container uk-margin-bottom">
+
+    <div class="uk-child-width-1-4@m uk-child-width-1-2@s" uk-grid>
+
+{% for article in articles %}
+        <div>
+            <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                <img src="{{ article.image_url }}" alt="" class="uk-align-center uk-margin-small-bottom">
+                <h3 class="uk-card-title uk-align-center uk-text-center uk-margin-remove">{{ article.nom|e }}</h3>
+                <p class="uk-display-inline">{{ article.prix|e }} €</p>
+                <a href="{{ url_page_panier }}?addarticle={{ article.id }}" class="uk-link-reset">
+                    <button class="uk-button uk-align-center uk-display-block uk-margin-small-top" type="button">Ajouter au panier</button>
+                </a>
+            </div>
+        </div>
+{% endfor %}
+
+    </div>
+
+</div>
+
+<div class="uk-container uk-margin-large-bottom">
+    <div>
+        <div class="uk-card uk-card-secondary uk-card-body">
+            <h3 class="uk-card-title">DUMP</h3>
+            {% for key,dump in dumps %}
+                {% if key == "Panier" %}
+                    {% if dump == "[]" %}
+                        <p>{{ key|e }} -> Vide</p>
+                    {% else %}
+                        <p>{{ key|e }} -> {{ dump|e }}</p>
+                    {% endif %}
+                {% else %}
+                    <p>{{ key|e }} -> {{ dump|e }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
